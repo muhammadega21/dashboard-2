@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard 2</title>
+    <link rel="stylesheet" href="dashboard.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs/dist/cdn.min.js"
+    ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body x-data x-toggle-tooltip="none">
+    <aside>
+      <div x-bind:class="$store.sidebar.full ? 'w-[180px]' : 'w-[50px]'" class="sidebar" >
+        <!-- Brand Logo -->
+        <div class="brand">
+          <div class="logo">
+            <img src="img/brand-logo.png" alt="Logo" />
+          </div>
+          <h1>Logo</h1>
+        </div>
+        <!-- Brand Logo -->
+
+        <!-- Sidebar List -->
+        <ul class="side-list">
+          <li>
+            <a href="" class="active">
+              <i class="bx bxs-dashboard"></i>
+              <span class="link-name">Dashboard</span>
+            </a>
+            <span class="tooltip">Dashboard</span>
+          </li>
+          <span
+            x-bind:class="$store.sidebar.full ? 'opacity-50 mt-1' : ''"
+            class="menu absolute text-xs ms-1.5 -mt-2 -z-10 opacity-0 transition-all duration-200 ease-out"
+            >Main</span
+          >
+          <div
+            x-bind:class="$store.sidebar.full ? 'mt-8' : ''"
+            class="list-main mt-0 transition-all duration-200 ease"
+          >
+            <li>
+              <a href="">
+                <i class="bx bxs-user"></i>
+                <span class="link-name">Profile</span>
+              </a>
+              <span class="tooltip">Profile</span>
+            </li>
+            <li>
+              <a href="">
+                <i class="bx bxs-briefcase"></i>
+                <span class="link-name">Product</span>
+              </a>
+              <span class="tooltip">Product</span>
+            </li>
+            <li>
+              <a href="">
+                <i class="bx bxs-analyse"></i>
+                <span class="link-name">Analytics</span>
+              </a>
+              <span class="tooltip">Analytics</span>
+            </li>
+            <li>
+              <a href="">
+                <i class="bx bxs-envelope"></i>
+                <span class="link-name">Message</span>
+              </a>
+              <span class="tooltip">Message</span>
+            </li>
+          </div>
+          <span
+            x-bind:class="$store.sidebar.full ? 'opacity-50 mt-1' : ''"
+            class="menu absolute text-xs ms-1.5 -mt-2 -z-10 opacity-0 transition-all duration-200 ease-out"
+            >Setting</span
+          >
+          <div
+            x-bind:class="$store.sidebar.full ? 'mt-8' : ''"
+            class="list-setting mt-0 transition-all duration-200 ease-out"
+          >
+            <li>
+              <a href="">
+                <i class="bx bxs-cog"></i>
+                <span class="link-name">Setting</span>
+              </a>
+              <span class="tooltip">Setting</span>
+            </li>
+            <li>
+              <a href="">
+                <i class="bx bx-log-out-circle"></i>
+                <span class="link-name">Logout</span>
+              </a>
+              <span class="tooltip">Logout</span>
+            </li>
+          </div>
+        </ul>
+        <!-- Sidebar List -->
+      </div>
+    </aside>
+    <main x-bind:class="$store.sidebar.full ? 'w-[calc(100%-180px)]' : 'w-[calc(100%-50px)]'">
+      <nav x-bind:class="$store.sidebar.full ? 'left-[180px]' : 'left-[50px]'" x-data="{ isActive: false }">
+        <div x-bind:class="isActive ? 'w-full' : ''" class="left w-[20%]">
+          <div @click="$store.sidebar.full = !$store.sidebar.full" class="bar">
+            <i
+              x-bind:class="$store.sidebar.full ? 'bx bx-menu-alt-left' : ''"
+              class="bx bx-menu"
+            ></i>
+          </div>
+          <div
+            x-bind:class="isActive ? 'active' : ''"
+            @keyup.escape.window="isActive = window.innerWidth <= 576 ? !isActive : isActive"
+            @click.outside="isActive = false"
+            class="searchBox sm:min-w-[280px]"
+          >
+            <form>
+              <input type="text" name="" id="" placeholder="Search..." />
+              <i
+                @click="isActive = window.innerWidth <= 576 ? !isActive : isActive"
+                class="bx bx-search"
+              ></i>
+            </form>
+          </div>
+        </div>
+        <div
+          x-bind:class="$store.sidebar.full && window.innerWidth <= 576 ? 'w-auto' : ''"
+          class="right w-[45%]"
+        >
+          <div
+            x-bind:class="$store.sidebar.full && window.innerWidth <= 576 ? 'invisible opacity-0' : ''"
+            class="notif visible transition-all duration-200 ease-out"
+          >
+            <div class="message">
+              <a href="">
+                <i class="bx bxs-message-square-dots"></i>
+                <span>5</span>
+              </a>
+            </div>
+            <div class="bell">
+              <a href="">
+                <i class="bx bxs-bell"></i>
+                <span>10</span>
+              </a>
+            </div>
+          </div>
+          <div x-data="{dropdown:false}"
+          @click.outside="dropdown = false"
+            class="userProfile">
+          <div x-bind:class="dropdown ? '' : ''"
+          @click="dropdown = !dropdown"
+           class="profileImg scale-100 hover:scale-110 active:scale-95">
+            <img src="img/Kazuma2.png" alt="Image" />
+          </div>
+            <div x-bind:class="dropdown ? 'flex opacity-100' : 'hidden'"
+             class="profileDropdown opacity-0">
+                <a href="">Account</a>
+                <a href="">Profile</a>
+                <a href="">Setting</a>
+                <a href="" class="logout relative">Logout</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div @click="$store.sidebar.full = false" class="content"></div>
+    </main>
+    <script src="dashboard.js"></script>
+  </body>
+</html>

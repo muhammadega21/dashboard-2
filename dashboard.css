@@ -1,0 +1,356 @@
+:root {
+  --primary: #3b82f6;
+  --light: #fff;
+  --slate: #f1f5f9;
+  --gray: #3f3f46;
+  --softDark: #454549;
+  --red: #dc2626;
+}
+
+@keyframes left-right {
+  0% {
+    animation-timing-function: ease-in;
+    opacity: 0;
+    left: 3.5rem;
+  }
+
+  80% {
+    opacity: 0.7;
+  }
+
+  100% {
+    animation-timing-function: ease-out;
+    opacity: 1;
+    left: 3.8rem;
+  }
+}
+
+body {
+  color: var(--gray);
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: var(--light);
+  position: fixed;
+  height: 100%;
+  transition: 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  width: 50px;
+}
+
+.sidebar .brand {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  margin: 10px 0;
+  position: relative;
+}
+
+.sidebar .brand .logo {
+  min-width: 30px;
+  max-width: 30px;
+}
+
+.sidebar .brand .logo img {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.sidebar .brand h1 {
+  margin-left: 0.8rem;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.sidebar .side-list {
+  margin-top: 20px;
+  position: relative;
+}
+
+.sidebar .side-list li {
+  margin-top: 10px;
+  white-space: nowrap;
+  width: 100%;
+  position: relative;
+}
+
+.sidebar .side-list li a {
+  padding: 7px 9px;
+  margin: 5px 7px 5px 5px;
+  display: flex;
+  align-items: center;
+  transition: 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar .side-list li a:active {
+  transform: scale(0.9);
+}
+
+.sidebar .side-list li i,
+.sidebar .side-list li .link-name {
+  transition: 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar .side-list li a:hover,
+.sidebar .side-list li a.active {
+  background-color: var(--primary);
+  color: var(--light);
+  border-radius: 6px;
+}
+
+.sidebar .side-list li i {
+  font-size: 20px;
+}
+
+.sidebar .side-list li .link-name {
+  font-size: 15px;
+  font-weight: 600;
+  overflow: hidden;
+  margin-left: 1rem;
+}
+
+.sidebar .side-list .tooltip {
+  position: absolute;
+  top: 55%;
+  left: 3.8rem;
+  transform: translateY(-50%);
+  background-color: var(--primary);
+  border-radius: 40px;
+  color: var(--light);
+  padding: 3px 12px 4px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  display: none;
+  z-index: -1;
+}
+
+.sidebar .side-list li a:hover ~ .tooltip {
+  display: block;
+  animation: left-right 0.2s ease-out;
+}
+/* Sidebar */
+
+/* Navbar */
+
+main {
+  margin-left: auto;
+  transition: 0.1s ease-out;
+  width: calc("100% - 50px");
+}
+
+nav {
+  position: fixed;
+  left: 50px;
+  z-index: 2;
+  right: 0;
+  height: 50px;
+  margin-left: auto;
+  background-color: var(--light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding-left: 5px;
+  transition: 0.1s ease-out;
+}
+
+nav .left {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+nav .left .bar {
+  font-size: 22px;
+  cursor: pointer;
+  padding: 0 5px;
+  opacity: 1;
+  transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+nav .bar:hover {
+  opacity: 0.8;
+}
+
+nav .left .searchBox {
+  margin-left: 10px;
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  transition: 0.2s ease-in-out;
+}
+
+nav .left .searchBox input {
+  visibility: hidden;
+  width: 0;
+  height: 35px;
+  border: none;
+  background: none;
+  outline: none;
+  background: var(--slate);
+  border-radius: 40px;
+  font-size: 14px;
+  padding: 5px 12px;
+  transition: 0.2s ease-in-out;
+}
+
+nav .left .searchBox i {
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 1;
+  background: var(--primary);
+  padding: 6px;
+  border-radius: 50%;
+  color: var(--light);
+  transition: 0.2s ease-in-out;
+}
+
+nav .left .searchBox.active input {
+  border-radius: 6px;
+  visibility: visible;
+  width: 100%;
+  transition: 0.2s ease-in-out;
+}
+
+nav .left .searchBox.active i {
+  font-size: 20px;
+  left: calc(100% - 30px);
+  opacity: 0.7;
+  background: none;
+  padding: 0;
+  color: var(--gray);
+  transition: 0.2s ease-in-out;
+}
+
+nav .right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  height: 100%;
+  gap: 10px;
+  margin-right: 20px;
+}
+
+nav .right .notif {
+  display: flex;
+  gap: 1rem;
+  right: 3.5rem;
+  position: absolute;
+  font-size: 20px;
+}
+
+nav .right .notif .message,
+nav .right .notif .bell {
+  position: relative;
+  cursor: pointer;
+  opacity: 1;
+  transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+nav .right .notif .message:hover,
+nav .right .notif .bell:hover {
+  opacity: 0.8;
+}
+
+nav .right .notif span {
+  position: absolute;
+  right: -10px;
+  top: -6px;
+  font-size: 10px;
+  font-weight: 700;
+  background-color: var(--red);
+  color: var(--light);
+  height: 20px;
+  width: 20px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 2px solid var(--light);
+}
+
+nav .right .userProfile .profileImg {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+nav .right .userProfile img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+nav .right .userProfile .profileDropdown {
+  position: absolute;
+  margin-top: 10px;
+  right: 0;
+  flex-direction: column;
+  background: var(--light);
+  width: 150px;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 4px;
+}
+
+nav .right .userProfile .profileDropdown a {
+  font-size: 16px;
+  border-radius: 2px;
+  padding: 6px 12px;
+  font-weight: 600;
+  transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+nav .right .userProfile .profileDropdown a:hover {
+  background-color: var(--primary);
+  color: var(--light);
+}
+
+nav .right .userProfile .profileDropdown .logout::before {
+  content: "";
+  position: absolute;
+  border-radius: 4px;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+}
+/* Navbar */
+
+/* Content */
+.content {
+  position: relative;
+  background-color: var(--slate);
+  height: 100vh;
+  padding-top: 40px;
+  margin-left: auto;
+}
+/* Content */
+
+@media (min-width: 576px) {
+  nav .left .searchBox input {
+    border-radius: 6px;
+    visibility: visible;
+    width: 100%;
+  }
+  nav .left .searchBox i {
+    font-size: 20px;
+    left: calc(100% - 35px);
+    opacity: 0.7;
+    background: none;
+    padding: 0;
+    color: var(--gray);
+  }
+}
